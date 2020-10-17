@@ -1,0 +1,32 @@
+﻿<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script language="javascript" type="text/javascript">
+    var data = $(function() {
+        navigator.geolocation.getCurrentPosition(showPosition, positionError);
+        function showPosition(position){
+            var coords = position.coords;
+            var data={ lat: JSON.stringify(coords.latitude), lng: JSON.stringify(coords.longitude) };
+            $.post("/Home/updateSessionCoords", data);
+        }
+        function positionError(position){
+            alert("Could not get location data");
+        }
+    });
+</script>
+
+
+@model website.Models.MessageSubmissionModel;
+@{
+    ViewData["Title"] = "Grapevine";
+}
+<div class="text-center">
+    <h1 class="display-4">Grapevine</h1>
+</div>
+
+<div class="messagecontent-entry">
+    @using (Html.BeginForm("submitMessage", "Home", FormMethod.Post)){
+        @Html.TextBoxFor(m => m.messageContent);
+        @* @Html.HiddenFor(m => m.lat, new {lat=ViewData["lat"]});
+        @Html.HiddenFor(m=> m.lng, new {lng= ViewData["long"]}); *@
+        <input type="Submit" value="Place message"/>
+    }
+</div>
