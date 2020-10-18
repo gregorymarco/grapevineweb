@@ -20,13 +20,12 @@
 }
 <div class="text-center">
     <h1 class="display-4">Grapevine</h1>
+    @Html.ActionLink("Browse", "Browse", "Home");
 </div>
 
 <div class="messagecontent-entry">
     @using (Html.BeginForm("submitMessage", "Home", FormMethod.Post)){
         @Html.TextBoxFor(m => m.messageContent);
-        @* @Html.HiddenFor(m => m.lat, new {lat=ViewData["lat"]});
-        @Html.HiddenFor(m=> m.lng, new {lng= ViewData["long"]}); *@
         <input type="Submit" value="Place message"/>
     }
 </div>

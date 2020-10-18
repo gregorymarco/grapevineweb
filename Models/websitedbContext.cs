@@ -26,20 +26,23 @@ namespace website.Models
                 optionsBuilder.UseNpgsql(conStr);
             }
         }
-
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Messages>(entity =>
             {
                 entity.ToTable("messages");
 
-                entity.Property(e => e.Id)
-                    .HasColumnName("id")
-                    .ValueGeneratedNever();
+                entity.Property(e => e.Id).HasColumnName("id");
 
-                entity.Property(e => e.Lat).HasColumnName("lat");
+                entity.Property(e => e.Heure).HasColumnName("heure");
 
-                entity.Property(e => e.Long).HasColumnName("long");
+                entity.Property(e => e.Lat)
+                    .HasColumnName("lat")
+                    .HasColumnType("numeric(10,0)");
+
+                entity.Property(e => e.Long)
+                    .HasColumnName("long")
+                    .HasColumnType("numeric(10,0)");
 
                 entity.Property(e => e.Messagecontent)
                     .HasColumnName("messagecontent")
@@ -48,7 +51,6 @@ namespace website.Models
 
             OnModelCreatingPartial(modelBuilder);
         }
-
         partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
     }
 }

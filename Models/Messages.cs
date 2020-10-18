@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-
 namespace website.Models
 {
     public partial class Messages
@@ -9,5 +7,6 @@ namespace website.Models
         public string Messagecontent { get; set; }
         public double? Lat { get; set; }
         public double? Long { get; set; }
+        public DateTime? Heure { get; set; }
     }
 }

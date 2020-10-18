@@ -1,0 +1,4 @@
+//re-scaffold models
+dotnet ef dbcontext scaffold "connectionstring" Npgsql.EntityFrameworkCore.PostgreSQL -o Models
+//re-scaffold dbcontext
+dotnet ef dbcontext scaffold "connectionstring" Npgsql.EntityFrameworkCore.PostgreSQL

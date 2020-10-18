@@ -57,6 +57,7 @@ namespace website.Controllers
             dbm.Messagecontent = m.messageContent;
             dbm.Lat = lat;
             dbm.Long = lng;
+            dbm.Heure = DateTime.Now;
             db.Messages.Add(dbm);
             if(db.SaveChanges() != 0){
                 //TODO: more error handling
