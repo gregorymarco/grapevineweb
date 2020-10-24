@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using website.Models;
 using System;
+using System.Linq;
 using System.Globalization;
 
 namespace website.Controllers
@@ -71,6 +72,26 @@ namespace website.Controllers
             HttpContext.Session.Set(NAME_LONG, BitConverter.GetBytes(Convert.ToDouble(lng, formatProvider)));
             //TODO Error handling
             return Json(200);
+        }
+        public IActionResult browse(){
+            byte[] latbytes;
+            HttpContext.Session.TryGetValue(NAME_LAT, out latbytes);
+            byte[] longbytes;
+            HttpContext.Session.TryGetValue(NAME_LONG, out longbytes);
+            if(latbytes == null || longbytes == null){
+                //TODO: make them give location to work
+                return View("Index");
+            }
+            double lat = BitConverter.ToDouble(latbytes);
+            double lng = BitConverter.ToDouble(longbytes);
+            var nearbyMessages = from    msg in db.Messages 
+                        where   msg.Lat <= (lat + 0.001) && 
+                                msg.Lat >= (lat - 0.001) &&
+                                msg.Long <= (lng + 0.001) &&
+                                msg.Long >= (lng -0.0001)
+                                select msg; 
+            return View(nearbyMessages);
+            //(temporary to compiile)
         }
     }
 }

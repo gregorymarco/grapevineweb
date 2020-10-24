@@ -1,0 +1,15 @@
+@model IEnumerable<website.Models.Messages>
+<div class="text-center">
+    <h1 class="display-4">Messages within 1KM</h1>
+</div>
+<table style="width:100%">
+    <tr>
+        <th>Message</th>
+    </tr>  
+@foreach (var message in Model)
+{ 
+    <tr>
+        <th>@message.Messagecontent</th>
+    </tr>
+}
+</table>
