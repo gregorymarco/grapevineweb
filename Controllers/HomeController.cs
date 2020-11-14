@@ -53,6 +53,8 @@ namespace website.Controllers
             }
             double lat = BitConverter.ToDouble(latbytes);
             double lng = BitConverter.ToDouble(longbytes);
+            ViewBag.lat = lat;
+            ViewBag.lng = lng;
             // Creating a new item and saving it to the database
             Messages dbm = new Messages();
             dbm.Messagecontent = m.messageContent;
