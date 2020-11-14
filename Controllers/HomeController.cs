@@ -89,9 +89,10 @@ namespace website.Controllers
                                 msg.Lat >= (lat - 0.001) &&
                                 msg.Long <= (lng + 0.001) &&
                                 msg.Long >= (lng -0.0001)
-                                select msg; 
+                                select msg;
+            ViewBag.lat = lat;
+            ViewBag.lng = lng;
             return View(nearbyMessages);
-            //(temporary to compiile)
         }
     }
 }

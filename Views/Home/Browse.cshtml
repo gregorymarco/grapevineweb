@@ -1,4 +1,6 @@
 @model IEnumerable<website.Models.Messages>
+@using System.Linq
+
 <div class="text-center">
     <h1 class="display-4">Messages within 1KM</h1>
 </div>
@@ -13,3 +15,39 @@
     </tr>
 }
 </table>
+<script
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAkKrJfJS87ykqUJS06beWH1LAVBHnbLHk&callback=initMap&libraries=&v=weekly"
+    defer
+>
+/*Nothing to be done about obscuring the API Key: Restrictions on this key to only work on requests from my domain is the best I can do
+TODO: break maps code down from inline into smaller js files*/</script>
+<style type="text/css">
+    /* Set the size of the div element that contains the map */
+    #map {
+    height: 400px;
+    /* The height is 400 pixels */
+    width: 100%;
+    /* The width is the width of the web page */
+    }
+</style>
+<script>
+    // Initialize and add the map
+    function initMap() {
+    const yourLocation = { lat: @ViewBag.lat, lng: @ViewBag.lng };
+    const map = new google.maps.Map(document.getElementById("map"), {
+        zoom: 4,
+        center: yourLocation,
+    });
+    const marker = new google.maps.Marker({
+        position: yourLocation,
+        map: map,
+    });
+    /*TODO: Add all local messages from model to map as markers*/
+    }
+</script>
+
+<body>
+    <h3>Messages/Visual</h3>
+    <div id="map"></div>
+</body>
+

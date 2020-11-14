@@ -18,14 +18,13 @@
 @{
     ViewData["Title"] = "Grapevine";
 }
-<div class="text-center">
-    <h1 class="display-4">Grapevine</h1>
-    @Html.ActionLink("Browse", "Browse", "Home");
-</div>
 
-<div class="messagecontent-entry">
+<div class="d-flex justify-content-center">
     @using (Html.BeginForm("submitMessage", "Home", FormMethod.Post)){
-        @Html.TextBoxFor(m => m.messageContent);
-        <input type="Submit" value="Place message"/>
+        @Html.TextAreaFor(m => m.messageContent, new { Class="form-control input-lg", rows="20", cols="100"})
+        <br />
+        <div class="d-flex justify-content-center">
+            <input type="Submit" value="Place message" class="submitButton"/>
+        </div>
     }
 </div>
