@@ -1,5 +1,4 @@
 @model IEnumerable<website.Models.Messages>
-@using System.Linq
 
 <div class="text-center">
     <h1 class="display-4">Messages within 1KM</h1>
@@ -33,16 +32,23 @@ TODO: break maps code down from inline into smaller js files*/</script>
 <script>
     // Initialize and add the map
     function initMap() {
-    const yourLocation = { lat: @ViewBag.lat, lng: @ViewBag.lng };
-    const map = new google.maps.Map(document.getElementById("map"), {
-        zoom: 4,
-        center: yourLocation,
-    });
-    const marker = new google.maps.Marker({
-        position: yourLocation,
-        map: map,
-    });
-    /*TODO: Add all local messages from model to map as markers*/
+        const yourLocation = { lat: @ViewBag.lat, lng: @ViewBag.lng };
+        const map = new google.maps.Map(document.getElementById("map"), {
+            zoom: 4,
+            center: yourLocation,
+        });
+        const marker = new google.maps.Marker({
+            position: yourLocation,
+            map: map,
+        });
+        var messages = JSON.parse('@Html.Raw(Json.Serialize(Model))');
+        messages.forEach(message => new google.maps.Marker({
+                position: {lat: message.lat, lng: message.long},
+                map,
+                title: message.messagecontent
+            })
+        )
+        console.log(messages);
     }
 </script>
 
