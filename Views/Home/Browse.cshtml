@@ -34,7 +34,7 @@ TODO: break maps code down from inline into smaller js files*/</script>
     function initMap() {
         const yourLocation = { lat: @ViewBag.lat, lng: @ViewBag.lng };
         const map = new google.maps.Map(document.getElementById("map"), {
-            zoom: 4,
+            zoom: 15,
             center: yourLocation,
         });
         const marker = new google.maps.Marker({
@@ -42,13 +42,20 @@ TODO: break maps code down from inline into smaller js files*/</script>
             map: map,
         });
         var messages = JSON.parse('@Html.Raw(Json.Serialize(Model))');
-        messages.forEach(message => new google.maps.Marker({
+        messages.forEach(function(message){
+            var infowindow = new google.maps.InfoWindow({
+                content: message.messagecontent,
+            });
+            var marker = new google.maps.Marker({
                 position: {lat: message.lat, lng: message.long},
                 map,
-                title: message.messagecontent
-            })
-        )
-        console.log(messages);
+                title:''
+            });
+            marker.addListener("click", () => {
+                infowindow.open(map, marker);
+            });
+        }
+        );
     }
 </script>
 
