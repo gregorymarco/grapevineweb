@@ -1,18 +1,5 @@
 ﻿<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script language="javascript" type="text/javascript">
-    var data = $(function() {
-        navigator.geolocation.getCurrentPosition(showPosition, positionError);
-        function showPosition(position){
-            var coords = position.coords;
-            var data={ lat: JSON.stringify(coords.latitude), lng: JSON.stringify(coords.longitude) };
-            $.post("/Home/updateSessionCoords", data);
-        }
-        function positionError(position){
-            alert("Could not get location data");
-        }
-    });
-</script>
-
+<script src="~/js/updateSessionCoords.js"></script>
 
 @model website.Models.MessageSubmissionModel;
 @{
