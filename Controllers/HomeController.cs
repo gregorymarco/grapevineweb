@@ -34,6 +34,10 @@ namespace website.Controllers
         {
             return View();
         }
+        [ActionName("SubmitResult")]
+        public IActionResult Submit(MessageSubmissionModel s){
+            return View(s);
+        }
         public IActionResult Privacy()
         {
             return View();
@@ -52,8 +56,8 @@ namespace website.Controllers
             byte[] longbytes;
             HttpContext.Session.TryGetValue(NAME_LONG, out longbytes);
             if(latbytes == null || longbytes == null){
-                //TODO: make them give location to work
-                return View("Index");
+                m.submissionSuccess = false;
+                return View("Submit", m);
             }
             double lat = BitConverter.ToDouble(latbytes);
             double lng = BitConverter.ToDouble(longbytes);
@@ -66,10 +70,12 @@ namespace website.Controllers
             dbm.Long = lng;
             dbm.Heure = DateTime.Now;
             db.Messages.Add(dbm);
-            if(db.SaveChanges() != 0){
-                //TODO: more error handling
+            if(db.SaveChanges() == 0){
+                m.submissionSuccess = false;
+                return View("Submit", m);
             }
-            return View("Index");
+            m.submissionSuccess = true;
+            return View("Submit", m);
         }
 
         [HttpPost]

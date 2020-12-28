@@ -1,9 +1,19 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <link rel="stylesheet" href="~/css/submitStyles.css">
-
 @model website.Models.MessageSubmissionModel;
+
 @{
     ViewData["Title"] = "Grapevine";
+}
+
+@{
+    if(Model != null){
+        if((bool)!Model.submissionSuccess){
+            <p>Message submission failed</p>
+        } else {
+            <p>Message saved successfully</p>
+        }
+    }
 }
 
 <div class="d-flex justify-content-center">
