@@ -30,6 +30,10 @@ namespace website.Controllers
         {
             return View();
         }
+        public IActionResult Submit()
+        {
+            return View();
+        }
         public IActionResult Privacy()
         {
             return View();

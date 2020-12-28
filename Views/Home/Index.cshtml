@@ -1,17 +1,16 @@
-﻿<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script src="~/js/updateSessionCoords.js"></script>
+﻿<link rel="stylesheet" href="~/css/indexStyles.css">
 
-@model website.Models.MessageSubmissionModel;
-@{
-    ViewData["Title"] = "Grapevine";
-}
-
-<div class="d-flex justify-content-center">
-    @using (Html.BeginForm("submitMessage", "Home", FormMethod.Post)){
-        @Html.TextAreaFor(m => m.messageContent, new { Class="form-control input-lg", rows="20", cols="100"})
-        <br />
-        <div class="d-flex justify-content-center">
-            <input type="Submit" value="Place message" class="submitButton"/>
-        </div>
-    }
-</div>
+<h5>Have you ever wanted to drop a signpost by whatever it was you were doing?</h5>
+<div id="glass-pane" class="ui-widget-content" >
+  <div class="text">Hosting an event?</div>
+  <img src="~/img/party.jpeg" />
+</div>  
+<div id="glass-pane" class="ui-widget-content">
+  <div class="text">Know a path less travelled?</div>
+  <img src="~/img/path.jpeg" />
+</div>  
+<div id="glass-pane" class="ui-widget-content" >
+  <div class="text">Leave something somewhere?</div>
+  <img src="~/img/stone.jpeg"/>  
+</div>  
+<h5>Mark it off by leaving a message on the grapevine!</h5>

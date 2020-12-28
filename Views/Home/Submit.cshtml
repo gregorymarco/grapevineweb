@@ -1,0 +1,17 @@
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<link rel="stylesheet" href="~/css/submitStyles.css">
+
+@model website.Models.MessageSubmissionModel;
+@{
+    ViewData["Title"] = "Grapevine";
+}
+
+<div class="d-flex justify-content-center">
+    @using (Html.BeginForm("submitMessage", "Home", FormMethod.Post)){
+        @Html.TextAreaFor(m => m.messageContent, new { Class="form-control input-lg", rows="20", cols="100"})
+        <br />
+        <div class="d-flex justify-content-center">
+            <input type="Submit" value="Place message" class="submitButton"/>
+        </div>
+    }
+</div>

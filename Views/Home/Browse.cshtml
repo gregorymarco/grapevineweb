@@ -1,10 +1,12 @@
 @model IEnumerable<website.Models.Messages>
-<script src="~/js/updateSessionCoords.js"></script>
+
+<link rel="stylesheet" href="~/css/browseStyles.css">
 
 <div class="text-center">
-    <h1 class="display-4">Messages within 1KM</h1>
+    <h4>Messages within 1KM</h4>
 </div>
-<table style="width:100%">  
+
+<table>  
 @foreach (var message in Model)
 { 
     <tr>
@@ -58,7 +60,6 @@ TODO: break maps code down from inline into smaller js files*/</script>
 </script>
 
 <body>
-    <h3>Messages/Visual</h3>
     <div id="map"></div>
 </body>
 
